@@ -1,20 +1,29 @@
-import React from 'react'; 
-import styles from '@/styles/Todolist.module.css'
-import { InputTodo } from './InputTodo';
-import { useState } from 'react';
+import React from "react";
+import useFetch from 'use-http';
+import { useEffect } from 'react';
 
-
-
-export const Todolist: React.FC = () => {
-    const [show, setShow] = useState(false);
-    
-return (
-<>
-  <button onClick={() => setShow(true)}>Click</button>
+interface data {
+  title: string,
   
-      {show ? <InputTodo show={show} setShow={setShow}/> : <></>}
-</>
-)
+  
 }
 
+export const Todolist: React.FC = () => {
+  
+  const optiton = {}
+  const {loading, error, data = []} = useFetch("http://localhost:8003/task", {}, [])
+  const test: data[] = data;
+  // test[0].title = (undefined ? loading : false;)
+
+  useEffect(() => {
+    console.log(`結果\n`, data)
+    console.log(error)
+    console.log(loading)
+  }, [data,error,loading])
+  return (
+    <>
+      
+    </>
+  );
+};
 

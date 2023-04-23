@@ -23,7 +23,6 @@ border: 8px solid #2A483E;
 }
 
 .menu_edge{
-
 width: 984px;
 height: 50px; 
 margin: 0 auto;
@@ -43,4 +42,13 @@ border-radius: 30px 30px 0px 0px;
   width: 900px;
   padding: 30px 0 0 0;
   margin: 0 auto;
+}
+
+.toSubmit {
+  margin-top: 14px;
+  margin-left: 16px;
+  border: 1px solid #2A483E;
+  border-radius: 1000px;
+  background-color: #FEB894;
+  font-weight: bold;
 }
