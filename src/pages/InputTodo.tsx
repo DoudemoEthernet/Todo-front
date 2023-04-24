@@ -5,7 +5,9 @@ import useFetch from 'use-http'
 import { DEV_MIDDLEWARE_MANIFEST } from 'next/dist/shared/lib/constants'
 
 type Data = {
-  title: string
+  title: string,
+  description: string,
+  difficulty: number
 }
 
 export const InputTodo: React.FC<{
