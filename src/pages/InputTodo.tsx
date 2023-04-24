@@ -1,36 +1,35 @@
-import React, { Dispatch, SetStateAction } from 'react'
-import { useState, useEffect } from 'react'
-import styles from '@/styles/input_todo.module.css'
-import useFetch from 'use-http'
-import { DEV_MIDDLEWARE_MANIFEST } from 'next/dist/shared/lib/constants'
+import React, { Dispatch, SetStateAction } from "react";
+import { useState, useEffect } from "react";
+import styles from "@/styles/input_todo.module.css";
+import useFetch from "use-http";
 
 type Data = {
-  title: string,
-  description: string,
-  difficulty: number
-}
+  title: string;
+  description: string;
+  difficulty: number;
+};
 
 export const InputTodo: React.FC<{
-  show: boolean
-  setShow: Dispatch<SetStateAction<boolean>>
+  show: boolean;
+  setShow: Dispatch<SetStateAction<boolean>>;
 }> = ({ show, setShow }) => {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [difficulty, setDifficulty] = useState('0')
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [difficulty, setDifficulty] = useState("0");
 
   const json = {
     title: title,
     description: description,
     difficulty: difficulty,
-  }
-  const obj = JSON.stringify(json)
+  };
+  const obj = JSON.stringify(json);
 
-  const { get, post, response, loading, error } = useFetch('http://localhost:8002')
+  const { get, post, response, loading, error } = useFetch("http://localhost:8002");
 
   async function addTodo() {
-    const newTodo = await post('/task', json)
-    if (response.ok) console.log('ok')
-    setShow(false)
+    const newTodo = await post("/task", json);
+    if (response.ok) console.log("ok");
+    setShow(false);
   }
 
   //   useEffect(() => {
@@ -43,41 +42,41 @@ export const InputTodo: React.FC<{
         <div className={styles.module_content}>
           <input
             className={styles.input_title}
-            type='text'
+            type="text"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
           />
 
           <div className={styles.input_checkbox}>
             <div>
-              <label form='input_difficult1'>1</label>
+              <label form="input_difficult1">1</label>
               <input
                 className={styles.input_difficult}
-                id='difficulty1'
-                type='checkbox'
-                value='difficulty1'
+                id="difficulty1"
+                type="checkbox"
+                value="difficulty1"
                 onChange={(event) => setDifficulty(event.target.value)}
               />
             </div>
 
             <div>
-              <label form='input_difficult2'>2</label>
+              <label form="input_difficult2">2</label>
               <input
                 className={styles.input_difficult2}
-                id='difficulty2'
-                type='checkbox'
-                value='difficulty2'
+                id="difficulty2"
+                type="checkbox"
+                value="difficulty2"
                 onChange={(event) => setDifficulty(event.target.value)}
               />
             </div>
 
             <div>
-              <label form='input_difficult3'>3</label>
+              <label form="input_difficult3">3</label>
               <input
                 className={styles.input_difficult3}
-                id='difficulty3'
-                type='checkbox'
-                value='difficulty3'
+                id="difficulty3"
+                type="checkbox"
+                value="difficulty3"
                 onChange={(event) => setDifficulty(event.target.value)}
               />
             </div>
@@ -85,8 +84,8 @@ export const InputTodo: React.FC<{
 
           <input
             className={styles.input_text}
-            type='text'
-            value='description'
+            type="text"
+            value="description"
             onChange={(event) => setDescription(event.target.value)}
           />
           <div className={styles.button}>
@@ -96,5 +95,5 @@ export const InputTodo: React.FC<{
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
