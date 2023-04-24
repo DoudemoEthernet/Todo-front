@@ -1,26 +1,45 @@
-import React from 'react'
-import useFetch from 'use-http'
-import { useEffect } from 'react'
-import styles from '@/styles/input_todo.module.css';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import useFetch, { UseFetch } from 'use-http'
+import styles from '@/styles/input_todo.module.css'
 
-interface data {
+interface Data {
+  id: string
   title: string
+  description: string
+  difficulty: number
 }
 
+export const tryGetTask = async (useFetch: UseFetch<any>): Promise<Data[]> =>
+  await useFetch.get('/task')
+
 export const Todolist: React.FC = () => {
-  const { data: string } = useFetch('http://localhost:8003/task', {}, [])
-  // const test: data[] = data
-  // test[0].title = (undefined ? loading : false;)
+  const fetch = useFetch('http://localhost:8003')
+  const [todoList, setTodoList] = useState<Data[]>([])
 
   useEffect(() => {
-    console.log(`結果\n`, )
-    // console.log(error)
-    // console.log(loading)
-  }, [data])
-  return <>
-  <div className={styles.todo}>
+    tryGetTask(fetch)
+      .then((data) => setTodoList(data))
+      .catch((e) => {
+        console.error(e)
+      })
+  }, [])
+  // const test: Data[] = Data
+  // test[0].title = (undefined ? loading : false;)
 
-  </div>
-  </>
+  return (
+    <>
+      <div className={styles.todo}>
+        {fetch.response.ok ? (
+          todoList.map((data) => (
+            <div key={data.id}>
+              <p>{data.title}</p>
+              <p>{data.description}</p>
+            </div>
+          ))
+        ) : (
+          <></>
+        )}
+      </div>
+    </>
+  )
 }
