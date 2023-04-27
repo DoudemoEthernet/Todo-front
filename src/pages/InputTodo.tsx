@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import styles from "@/styles/input_todo.module.css";
 import useFetch from "use-http";
-import { API_URI } from "@/pages/index";
+import { API_URI } from "./index";
 
 type Data = {
   title: string;

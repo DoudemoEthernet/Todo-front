@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { InputTodo } from "./InputTodo";
 import { Data, Todolist } from "./Todolist";
 import { TodoDetails } from "./TodoDetails";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
