@@ -2,34 +2,49 @@ import React, { Dispatch, SetStateAction } from "react";
 import { useState, useEffect } from "react";
 import styles from "@/styles/TodoDetails.module.css";
 import useFetch from "use-http";
-
-type Data = {
-  title: string;
-  description: string;
-  difficulty: number;
-};
+import { Data } from "@/pages/Todolist";
+import { API_URI } from "@/pages/index";
 
 export const TodoDetails: React.FC<{
   isEditing: boolean;
   setIsEditing: Dispatch<SetStateAction<boolean>>;
-}> = ({ isEditing, setIsEditing }) => {
+  currentData: Data | null;
+}> = ({ isEditing, setIsEditing, currentData }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [difficulty, setDifficulty] = useState("0");
 
-  const json = {
-    title: title,
-    description: description,
-    difficulty: difficulty,
-  };
+  useEffect(() => {
+    if (currentData !== null) {
+      setTitle(currentData.title);
+      setDescription(currentData.description);
+      setDifficulty(`${currentData.difficulty}`);
+    }
+  }, [currentData]);
 
-  const obj = JSON.stringify(json);
+  const fetch = useFetch(API_URI);
 
-  const { get, post, response, loading, error } = useFetch("http://localhost:8002");
+  async function updateTodo() {
+    if (currentData === null) {
+      console.error("currentData is null!!");
+      return;
+    }
+    const data: Data = {
+      id: currentData.id,
+      title: title,
+      description: description,
+      difficulty: parseInt(difficulty),
+    };
+    await fetch.patch("/task", data);
+    setIsEditing(false);
+  }
 
-  async function addTodo() {
-    const newTodo = await post("/task", json);
-    if (response.ok) console.log("ok");
+  async function deleteTodo() {
+    if (currentData === null) {
+      console.error("currentData is null!!");
+      return;
+    }
+    await fetch.delete(`/task/${currentData.id}`);
     setIsEditing(false);
   }
 
@@ -37,7 +52,7 @@ export const TodoDetails: React.FC<{
     <div hidden={!isEditing}>
       <div className={styles.overlay}>
         <div className={styles.module_content}>
-        <label>Title</label>
+          <label>Title</label>
           <input
             className={styles.input_title}
             type="text"
@@ -81,18 +96,25 @@ export const TodoDetails: React.FC<{
           </div>
 
           <div>
-          <label className={styles.description}>Description</label>
-          <textarea
-            className={styles.input_text}
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-          />
+            <label className={styles.description}>Description</label>
+            <textarea
+              className={styles.input_text}
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+            />
           </div>
-          
 
           <div className={styles.button}>
             <button onClick={() => setIsEditing(false)}>close</button>
-            <button onClick={() => addTodo()}>complete</button>
+            <button
+              onClick={() =>
+                updateTodo().catch((e) => {
+                  console.error(e);
+                })
+              }
+            >
+              complete
+            </button>
           </div>
         </div>
       </div>

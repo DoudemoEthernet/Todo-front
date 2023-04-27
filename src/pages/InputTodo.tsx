@@ -76,12 +76,12 @@ export const InputTodo: React.FC<{
           </div>
 
           <div>
-          <label className={styles.description}>Description</label>
-          <textarea
-            className={styles.input_text}
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-          />
+            <label className={styles.description}>Description</label>
+            <textarea
+              className={styles.input_text}
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+            />
           </div>
 
           <div className={styles.button}>

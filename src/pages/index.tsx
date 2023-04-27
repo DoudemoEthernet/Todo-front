@@ -25,7 +25,15 @@ export default function Home() {
         </div>
         <div className={styles.menu_back}>
           <Todolist setIsEditing={setIsEditing} setEditingTodo={setEditingTodo} />
-          {isEditing ? <TodoDetails isEditing={isEditing} setIsEditing={setIsEditing} /> : <></>}
+          {isEditing ? (
+            <TodoDetails
+              isEditing={isEditing}
+              setIsEditing={setIsEditing}
+              currentData={editingTodo}
+            />
+          ) : (
+            <></>
+          )}
 
           {show ? <InputTodo show={show} setShow={setShow} /> : <></>}
         </div>
