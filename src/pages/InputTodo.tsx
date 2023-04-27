@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "@/styles/input_todo.module.css";
 import useFetch from "use-http";
 
@@ -17,18 +17,15 @@ export const InputTodo: React.FC<{
   const [description, setDescription] = useState("");
   const [difficulty, setDifficulty] = useState("0");
 
-  const json = {
-    title: title,
-    description: description,
-    difficulty: difficulty,
-  };
-  const obj = JSON.stringify(json);
-
-  const { get, post, response, loading, error } = useFetch("http://localhost:8002");
+  const { post } = useFetch("http://localhost:8003");
 
   async function addTodo() {
-    const newTodo = await post("/task", json);
-    if (response.ok) console.log("ok");
+    const todo: Data = {
+      title: title,
+      description: description,
+      difficulty: parseInt(difficulty),
+    };
+    await post("/task", todo);
     setShow(false);
   }
 
@@ -86,7 +83,15 @@ export const InputTodo: React.FC<{
           />
           <div className={styles.button}>
             <button onClick={() => setShow(false)}>close</button>
-            <button onClick={() => addTodo()}>submit</button>
+            <button
+              onClick={() =>
+                addTodo().catch((e) => {
+                  console.log(e);
+                })
+              }
+            >
+              submit
+            </button>
           </div>
         </div>
       </div>
