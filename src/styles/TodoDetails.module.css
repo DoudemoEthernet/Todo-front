@@ -1,0 +1,50 @@
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.5);
+  
+    /*　画面の中央に要素を表示させる設定　*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .module_content{
+    z-index:2;
+    width:520px;
+    height: 180px;
+    padding: 1em;
+    background:#C1E1DE ;
+  }
+  
+  .input_title {
+    width: 200px;
+    height: 20px;
+  }
+  
+  .input_text {
+    width: 500px;
+    height: 85px;
+    margin-top: 10px;
+    display: block;
+  
+  }
+  
+  .input_checkbox{
+    display: flex;
+    float:right;
+    margin-right: 10px;
+  }
+  
+  .button {
+    float: right;
+    margin-top: 20px;
+    margin-right: 10px;
+  }
+
+
+  
+  

@@ -26,6 +26,7 @@ export const InputTodo: React.FC<{
       description: description,
       difficulty: parseInt(difficulty),
     };
+    console.log(todo);
     await post("/task", todo);
     setShow(false);
   }
@@ -34,6 +35,7 @@ export const InputTodo: React.FC<{
     <div hidden={!show}>
       <div className={styles.overlay}>
         <div className={styles.module_content}>
+          <label>Title</label>
           <input
             className={styles.input_title}
             type="text"
@@ -43,45 +45,45 @@ export const InputTodo: React.FC<{
 
           <div className={styles.input_checkbox}>
             <div>
-              <label form="input_difficult1">1</label>
+              <label>1</label>
               <input
                 className={styles.input_difficult}
-                id="difficulty1"
                 type="checkbox"
-                value="difficulty1"
+                value={"1"}
                 onChange={(event) => setDifficulty(event.target.value)}
               />
             </div>
 
             <div>
-              <label form="input_difficult2">2</label>
+              <label>2</label>
               <input
                 className={styles.input_difficult2}
-                id="difficulty2"
                 type="checkbox"
-                value="difficulty2"
+                value={"2"}
                 onChange={(event) => setDifficulty(event.target.value)}
               />
             </div>
 
             <div>
-              <label form="input_difficult3">3</label>
+              <label>3</label>
               <input
                 className={styles.input_difficult3}
-                id="difficulty3"
                 type="checkbox"
-                value="difficulty3"
+                value={"3"}
                 onChange={(event) => setDifficulty(event.target.value)}
               />
             </div>
           </div>
 
-          <input
+          <div>
+          <label className={styles.description}>Description</label>
+          <textarea
             className={styles.input_text}
-            type="text"
-            value="description"
+            value={description}
             onChange={(event) => setDescription(event.target.value)}
           />
+          </div>
+
           <div className={styles.button}>
             <button onClick={() => setShow(false)}>close</button>
             <button

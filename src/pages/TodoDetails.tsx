@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { useState, useEffect } from "react";
-import styles from "@/styles/input_todo.module.css";
+import styles from "@/styles/TodoDetails.module.css";
 import useFetch from "use-http";
 
 type Data = {
@@ -37,6 +37,7 @@ export const TodoDetails: React.FC<{
     <div hidden={!isEditing}>
       <div className={styles.overlay}>
         <div className={styles.module_content}>
+        <label>Title</label>
           <input
             className={styles.input_title}
             type="text"
@@ -79,15 +80,19 @@ export const TodoDetails: React.FC<{
             </div>
           </div>
 
-          <input
+          <div>
+          <label className={styles.description}>Description</label>
+          <textarea
             className={styles.input_text}
-            type="text"
-            value="description"
+            value={description}
             onChange={(event) => setDescription(event.target.value)}
           />
+          </div>
+          
+
           <div className={styles.button}>
             <button onClick={() => setIsEditing(false)}>close</button>
-            <button onClick={() => addTodo()}>submit</button>
+            <button onClick={() => addTodo()}>complete</button>
           </div>
         </div>
       </div>
