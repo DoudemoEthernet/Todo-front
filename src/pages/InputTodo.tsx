@@ -32,9 +32,6 @@ export const InputTodo: React.FC<{
     setShow(false);
   }
 
-  //   useEffect(() => {
-  //     console.log(show);
-  //   }, [show]);
 
   return (
     <div hidden={!show}>
