@@ -13,7 +13,8 @@ type Data = {
 export const InputTodo: React.FC<{
   show: boolean;
   setShow: Dispatch<SetStateAction<boolean>>;
-}> = ({ show, setShow }) => {
+  setRequireUpdate: Dispatch<SetStateAction<boolean>>;
+}> = ({ show, setShow, setRequireUpdate }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [difficulty, setDifficulty] = useState("0");
@@ -87,11 +88,12 @@ export const InputTodo: React.FC<{
           <div className={styles.button}>
             <button onClick={() => setShow(false)}>close</button>
             <button
-              onClick={() =>
+              onClick={() => {
+                setRequireUpdate(true);
                 addTodo().catch((e) => {
                   console.log(e);
-                })
-              }
+                });
+              }}
             >
               submit
             </button>

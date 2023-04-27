@@ -14,6 +14,7 @@ export default function Home() {
   const [isEditing, setIsEditing] = useState(false);
 
   const [editingTodo, setEditingTodo] = useState<Data | null>(null);
+  const [requireUpdate, setRequireUpdate] = useState(false);
   return (
     <>
       <p className={styles.test}>To do List</p>
@@ -24,7 +25,12 @@ export default function Home() {
           </button>
         </div>
         <div className={styles.menu_back}>
-          <Todolist setIsEditing={setIsEditing} setEditingTodo={setEditingTodo} />
+          <Todolist
+            setIsEditing={setIsEditing}
+            setEditingTodo={setEditingTodo}
+            setRequireUpdate={setRequireUpdate}
+            requireUpdate={requireUpdate}
+          />
           {isEditing ? (
             <TodoDetails
               isEditing={isEditing}
@@ -35,7 +41,11 @@ export default function Home() {
             <></>
           )}
 
-          {show ? <InputTodo show={show} setShow={setShow} /> : <></>}
+          {show ? (
+            <InputTodo show={show} setShow={setShow} setRequireUpdate={setRequireUpdate} />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       {/* <div>{loading ? "loading" : "ERROR!"}</div>  */}

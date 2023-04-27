@@ -16,7 +16,9 @@ export const tryGetTask = async (useFetch: UseFetch<any>): Promise<Data[]> =>
 export const Todolist: React.FC<{
   setIsEditing: Dispatch<SetStateAction<boolean>>;
   setEditingTodo: Dispatch<SetStateAction<Data | null>>;
-}> = ({ setIsEditing, setEditingTodo }) => {
+  requireUpdate: boolean;
+  setRequireUpdate: Dispatch<SetStateAction<boolean>>;
+}> = ({ setIsEditing, setEditingTodo, requireUpdate, setRequireUpdate }) => {
   const fetch = useFetch(API_URI);
   const [todoList, setTodoList] = useState<Data[]>([]);
 
@@ -26,7 +28,8 @@ export const Todolist: React.FC<{
       .catch((e) => {
         console.error(e);
       });
-  }, []);
+    setRequireUpdate(false);
+  }, [requireUpdate]);
   // const test: Data[] = Data
   // test[0].title = (undefined ? loading : false;)
 
