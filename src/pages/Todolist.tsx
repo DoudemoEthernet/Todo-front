@@ -41,10 +41,10 @@ export const Todolist: React.FC<{
               setIsEditing(true);
             }}
           >
-            <div className={styles.todo} role="button" >
-            <p className={styles.word}>・{data.title}</p>
+            <div className={styles.todo} role="button">
+              <p className={styles.word}>・{data.title}</p>
             </div>
-            </div>
+          </div>
         ))
       ) : (
         <div className={styles.todo} role="button" onClick={() => setIsEditing(true)}>

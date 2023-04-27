@@ -32,7 +32,6 @@ export const InputTodo: React.FC<{
     setShow(false);
   }
 
-
   return (
     <div hidden={!show}>
       <div className={styles.overlay}>
