@@ -36,7 +36,7 @@ export const InputTodo: React.FC<{
     <div hidden={!show}>
       <div className={styles.overlay}>
         <div className={styles.module_content}>
-          <label>Title</label>
+          <label className={styles.title_text}>Title</label>
           <input
             className={styles.input_title}
             type="text"

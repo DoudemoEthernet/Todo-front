@@ -52,7 +52,7 @@ export const TodoDetails: React.FC<{
     <div hidden={!isEditing}>
       <div className={styles.overlay}>
         <div className={styles.module_content}>
-          <label>Title</label>
+          <label className={styles.title_text}>Title</label>
           <input
             className={styles.input_title}
             type="text"
@@ -106,6 +106,27 @@ export const TodoDetails: React.FC<{
 
           <div className={styles.button}>
             <button onClick={() => setIsEditing(false)}>close</button>
+
+            <button
+              onClick={() =>
+                updateTodo().catch((e) => {
+                  console.error(e);
+                })
+              }
+            >
+              update
+            </button>
+
+            <button
+              onClick={() =>
+                updateTodo().catch((e) => {
+                  console.error(e);
+                })
+              }
+            >
+              delete
+            </button>
+
             <button
               onClick={() =>
                 updateTodo().catch((e) => {

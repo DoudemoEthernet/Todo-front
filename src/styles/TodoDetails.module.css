@@ -18,11 +18,17 @@
     height: 180px;
     padding: 1em;
     background:#C1E1DE ;
+    border-radius: 10px;
+  }
+
+  .title_text{
+    padding-right: 5px;
   }
   
   .input_title {
     width: 200px;
     height: 20px;
+    border-radius: 5px;
   }
   
   .input_text {
@@ -30,6 +36,7 @@
     height: 85px;
     margin-top: 10px;
     display: block;
+    border-radius: 5px;
   
   }
   
@@ -37,14 +44,17 @@
     display: flex;
     float:right;
     margin-right: 10px;
+    border-radius: 10px;
   }
+
+
   
   .button {
     float: right;
     margin-top: 20px;
     margin-right: 10px;
+    border-radius: 10px;
   }
-
 
   
   
