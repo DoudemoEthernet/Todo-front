@@ -7,6 +7,8 @@ import { TodoDetails } from "./TodoDetails";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const API_URI = "http://localhost:8003";
+
 export default function Home() {
   const [show, setShow] = useState(false);
   const [isEditing, setIsEditing] = useState(false);

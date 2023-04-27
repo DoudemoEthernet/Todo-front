@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import useFetch, { UseFetch } from "use-http";
 import styles from "@/styles/Todolist.module.css";
+import { API_URI } from "@/pages/index";
 
 export interface Data {
   id: string;
@@ -16,7 +17,7 @@ export const Todolist: React.FC<{
   setIsEditing: Dispatch<SetStateAction<boolean>>;
   setEditingTodo: Dispatch<SetStateAction<Data | null>>;
 }> = ({ setIsEditing, setEditingTodo }) => {
-  const fetch = useFetch("http://localhost:8003");
+  const fetch = useFetch(API_URI);
   const [todoList, setTodoList] = useState<Data[]>([]);
 
   useEffect(() => {

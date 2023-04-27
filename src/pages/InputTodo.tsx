@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import styles from "@/styles/input_todo.module.css";
 import useFetch from "use-http";
+import { API_URI } from "@/pages/index";
 
 type Data = {
   title: string;
@@ -17,7 +18,7 @@ export const InputTodo: React.FC<{
   const [description, setDescription] = useState("");
   const [difficulty, setDifficulty] = useState("0");
 
-  const { post } = useFetch("http://localhost:8003");
+  const { post } = useFetch(API_URI);
 
   async function addTodo() {
     const todo: Data = {
