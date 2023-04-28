@@ -1,20 +1,20 @@
-import { UseFetch } from 'use-http'
-import { getCookie, setCookie } from 'typescript-cookie'
+import { UseFetch } from "use-http";
+import { getCookie, setCookie } from "typescript-cookie";
 
 export interface AccountInfo {
-  user: string
-  password: string
+  user: string;
+  password: string;
 }
 
 interface TokenInfo {
-  token: string
-  expr: number
+  token: string;
+  expr: number;
 }
 
-const COOKIE_TOKEN_KEY = 'token'
+const COOKIE_TOKEN_KEY = "token";
 
-const SLUG_SIGNUP = '/account/signup'
-const SLUG_LOGIN = '/account/login'
+const SLUG_SIGNUP = "/account/signup";
+const SLUG_LOGIN = "/account/login";
 
 /**
  * {@typedef AccountInfo}情報を基にアカウント作成を試行します
@@ -52,9 +52,9 @@ export const trySignup = async (
   accountInfo: AccountInfo,
   useFetch: UseFetch<TokenInfo>,
 ): Promise<void> => {
-  const result = await useFetch.post(SLUG_SIGNUP, accountInfo)
-  setTokenInCookie(result)
-}
+  const result = await useFetch.post(SLUG_SIGNUP, accountInfo);
+  setTokenInCookie(result);
+};
 
 /**
  * {@typedef AccountInfo}情報を基にログインを試行します
@@ -68,26 +68,26 @@ export const tryLogin = async (
   accountInfo: AccountInfo,
   useFetch: UseFetch<TokenInfo>,
 ): Promise<void> => {
-  const result = await useFetch.post(SLUG_LOGIN, accountInfo)
-  setTokenInCookie(result)
-}
+  const result = await useFetch.post(SLUG_LOGIN, accountInfo);
+  setTokenInCookie(result);
+};
 
 /**
  * トークンを取得します
  * 有効期限が切れているなどでundefinedが返される可能性に注意してください
  */
-export const getToken = (): string | undefined => getCookie(COOKIE_TOKEN_KEY)
+export const getToken = (): string | undefined => getCookie(COOKIE_TOKEN_KEY);
 
 /**
  * トークンを所持しているかを確認します
  */
-export const hasToken = (): boolean => getCookie(COOKIE_TOKEN_KEY) !== undefined
+export const hasToken = (): boolean => getCookie(COOKIE_TOKEN_KEY) !== undefined;
 
 const setTokenInCookie = (info: TokenInfo) => {
-  const isDebugMode = process.env.NODE_ENV === 'development'
+  const isDebugMode = process.env.NODE_ENV === "development";
   setCookie(COOKIE_TOKEN_KEY, info.token, {
     expires: new Date(info.expr),
     secure: !isDebugMode,
-    sameSite: 'strict',
-  })
-}
+    sameSite: "strict",
+  });
+};

@@ -86,11 +86,11 @@ export const InputTodo: React.FC<{
           </div>
 
           <div className={styles.button}>
+            <button className={styles.close} onClick={() => setShow(false)}>
+              close
+            </button>
             <button
-            className={styles.close}
-             onClick={() => setShow(false)}>close</button>
-            <button
-            className={styles.submit}
+              className={styles.submit}
               onClick={() => {
                 setRequireUpdate(true);
                 addTodo().catch((e) => {
