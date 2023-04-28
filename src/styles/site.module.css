@@ -14,6 +14,13 @@
     font-size: 50px;
 }
 
+.user_label{
+    padding-right: 5px;
+}
+
+.user_password{
+    padding-right: 5px;
+}
 .input_login{
     margin-top: 120px;
     display: flex;
@@ -32,9 +39,8 @@
     margin-top:0px;
     margin-left:936px;
 }
-.link{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top:50px ;
+.login_button{
+
 }
+
+
