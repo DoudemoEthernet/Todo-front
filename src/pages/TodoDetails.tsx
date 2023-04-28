@@ -4,6 +4,7 @@ import styles from "@/styles/TodoDetails.module.css";
 import useFetch from "use-http";
 import { Data } from "@/pages/Todolist";
 import { API_URI } from "@/pages/index";
+import { getAuthHeader, getToken } from "@/lib/account";
 
 export const TodoDetails: React.FC<{
   isEditing: boolean;
@@ -22,7 +23,11 @@ export const TodoDetails: React.FC<{
     }
   }, [currentData]);
 
-  const fetch = useFetch(API_URI);
+  const token = getToken();
+  if (token === undefined) {
+    //TODO ログイン画面に戻す
+  }
+  const fetch = useFetch(API_URI, { headers: { ...getAuthHeader(token ?? "") } });
 
   async function updateTodo() {
     if (currentData === null) {

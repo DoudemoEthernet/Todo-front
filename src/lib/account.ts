@@ -11,6 +11,8 @@ interface TokenInfo {
   expr: number;
 }
 
+export const getAuthHeader = (token: string): Record<string, string> => ({ Authorization: token });
+
 const COOKIE_TOKEN_KEY = "token";
 
 const SLUG_SIGNUP = "/account/signup";

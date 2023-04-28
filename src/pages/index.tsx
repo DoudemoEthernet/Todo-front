@@ -1,14 +1,30 @@
 import styles from "@/styles/Home.module.css";
 import { Inter } from "next/font/google";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { InputTodo } from "./InputTodo";
 import { Data, Todolist } from "./Todolist";
 import { TodoDetails } from "./TodoDetails";
-import ReactSkillbar, { SkillBar } from 'react-skillbars';
+import dynamic from "next/dynamic";
+import { SkillBar } from 'react-skillbars';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const API_URI = "http://localhost:8003";
+
+const DynamicTodoList = dynamic(async () => Todolist, {
+  loading: () => <p>Loading...</p>,
+  ssr: false,
+});
+
+const DynamicTodoDetails = dynamic(async () => TodoDetails, {
+  loading: () => <p>Loading...</p>,
+  ssr: false,
+});
+
+const DynamicInputTodo = dynamic(async () => InputTodo, {
+  loading: () => <p>Loading...</p>,
+  ssr: false,
+});
 
 const Experience_point: number = 50;
 const skills = [
@@ -17,12 +33,10 @@ const skills = [
     level: Experience_point,
     color: {
       title: { text: '#fff', background: '#FEB894' }
-      
+
     }
   }
 ];
-
-
 
 export default function Home() {
   const [show, setShow] = useState(false);
@@ -40,14 +54,14 @@ export default function Home() {
           </button>
         </div>
         <div className={styles.menu_back}>
-          <Todolist
+          <DynamicTodoList
             setIsEditing={setIsEditing}
             setEditingTodo={setEditingTodo}
             setRequireUpdate={setRequireUpdate}
             requireUpdate={requireUpdate}
           />
           {isEditing ? (
-            <TodoDetails
+            <DynamicTodoDetails
               isEditing={isEditing}
               setIsEditing={setIsEditing}
               currentData={editingTodo}
@@ -57,7 +71,7 @@ export default function Home() {
           )}
 
           {show ? (
-            <InputTodo show={show} setShow={setShow} setRequireUpdate={setRequireUpdate} />
+            <DynamicInputTodo show={show} setShow={setShow} setRequireUpdate={setRequireUpdate} />
           ) : (
             <></>
           )}

@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import useFetch, { UseFetch } from "use-http";
 import styles from "@/styles/Todolist.module.css";
 import { API_URI } from "@/pages/index";
+import { getAuthHeader, getToken } from "@/lib/account";
 
 export interface Data {
   id: string;
@@ -19,7 +20,11 @@ export const Todolist: React.FC<{
   requireUpdate: boolean;
   setRequireUpdate: Dispatch<SetStateAction<boolean>>;
 }> = ({ setIsEditing, setEditingTodo, requireUpdate, setRequireUpdate }) => {
-  const fetch = useFetch(API_URI);
+  const token = getToken();
+  if (token === undefined) {
+    //TODO ログイン画面に戻す
+  }
+  const fetch = useFetch(API_URI, { headers: { ...getAuthHeader(token ?? "") } });
   const [todoList, setTodoList] = useState<Data[]>([]);
 
   useEffect(() => {

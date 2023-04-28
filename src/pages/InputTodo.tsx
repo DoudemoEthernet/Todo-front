@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "@/styles/input_todo.module.css";
 import useFetch from "use-http";
 import { API_URI } from "./index";
+import { getAuthHeader, getToken } from "@/lib/account";
 
 type Data = {
   title: string;
@@ -19,7 +20,11 @@ export const InputTodo: React.FC<{
   const [description, setDescription] = useState("");
   const [difficulty, setDifficulty] = useState("0");
 
-  const { post } = useFetch(API_URI);
+  const token = getToken();
+  if (token === undefined) {
+    //TODO ログイン画面に戻す
+  }
+  const { post } = useFetch(API_URI, { headers: { ...getAuthHeader(token ?? "") } });
 
   async function addTodo() {
     const todo: Data = {
