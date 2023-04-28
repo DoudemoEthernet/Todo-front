@@ -5,7 +5,7 @@ import Image from "next/image";
 import useFetch from "use-http";
 import { API_URI } from "./index";
 import { tryLogin } from "../lib/account";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 
 export interface AccountInfo {
@@ -44,7 +44,7 @@ export default function Site() {
       <div className={styles.back}>
         <p className={styles.login}>Login</p>
         <div className={styles.input_login}>
-          <div>mじ
+          <div>
             <label className={styles.user_label}>user</label>
             <input
               className={styles.name}
