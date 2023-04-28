@@ -106,3 +106,5 @@ export const InputTodo: React.FC<{
     </div>
   );
 };
+
+export default InputTodo;

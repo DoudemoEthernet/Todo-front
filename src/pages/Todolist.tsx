@@ -58,3 +58,5 @@ export const Todolist: React.FC<{
     </>
   );
 };
+
+export default Todolist;
