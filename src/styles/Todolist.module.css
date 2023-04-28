@@ -4,6 +4,7 @@
   background-color: #F9F5EA;
   border-bottom: 2px, solid,#FEB894;
   position: absolute;
+  cursor: pointer;
 }
 
 .word {

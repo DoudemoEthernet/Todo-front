@@ -9,7 +9,6 @@ export default function Site() {
     <>
       <div className={styles.back}>
         <p className={styles.login}>Login</p>
-
         <div className={styles.input_login}>
           <input className={styles.name} type="text"></input>
           <input className={styles.name} type="text"></input>

@@ -105,9 +105,12 @@ export const TodoDetails: React.FC<{
           </div>
 
           <div className={styles.button}>
-            <button onClick={() => setIsEditing(false)}>close</button>
+            <button
+            className={styles.close}
+             onClick={() => setIsEditing(false)}>close</button>
 
             <button
+            className={styles.update}
               onClick={() =>
                 updateTodo().catch((e) => {
                   console.error(e);
@@ -118,6 +121,7 @@ export const TodoDetails: React.FC<{
             </button>
 
             <button
+            className={styles.delete}
               onClick={() =>
                 updateTodo().catch((e) => {
                   console.error(e);
@@ -128,6 +132,7 @@ export const TodoDetails: React.FC<{
             </button>
 
             <button
+            className={styles.complete}
               onClick={() =>
                 updateTodo().catch((e) => {
                   console.error(e);
