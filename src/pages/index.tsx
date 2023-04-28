@@ -8,7 +8,7 @@ import ReactSkillbar, { SkillBar } from 'react-skillbars';
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const API_URI = process.env.NODE_ENV === "development" ? "http://localhost:8003" : "https://greenback.doudemother.net";
+export const API_URI = process.env.NODE_ENV === "development" ? "http://localhost:8003" : "https://greenback.doudemoether.net";
 
 const Experience_point: number = 50;
 const skills = [
