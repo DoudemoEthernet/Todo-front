@@ -24,6 +24,7 @@
     "react-router-dom": "^6.10.0",
     "sort-by": "^1.2.0",
     "typescript": "5.0.4",
+    "typescript-cookie": "^1.0.6",
     "use-http": "^1.0.27"
   },
   "devDependencies": {
