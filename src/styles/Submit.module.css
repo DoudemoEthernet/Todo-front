@@ -1,0 +1,38 @@
+.back{
+box-sizing: border-box;
+width: 800px;
+height: 450px; 
+margin:0 auto;
+
+background: #fff;
+}
+
+
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top:50px ;
+    font-size: 50px;
+}
+
+.user_label{
+    padding-right: 5px;
+}
+
+.user_password{
+    padding-right: 5px;
+}
+.input_login{
+    margin-top: 120px;
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    gap:50px;
+}
+
+.name{
+    background-color: #D9D9D9;
+    width: 100px;
+}
+

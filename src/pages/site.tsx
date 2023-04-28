@@ -15,7 +15,6 @@ export interface AccountInfo {
 
 const COOKIE_TOKEN_KEY = "token";
 
-const SLUG_SIGNUP = "/account/signup";
 const SLUG_LOGIN = "/account/login";
 
 export default function Site() {
@@ -30,7 +29,6 @@ export default function Site() {
   const router = useRouter();
 
   const onClickSubmit = () => {
-    
     tryLogin(accountInfo, fetch)
       .then(() => {
         setResult("ok");
@@ -39,7 +37,6 @@ export default function Site() {
         console.error(e);
         setResult(`failed. statusCode: ${fetch.response.status}`);
       });
-      
   };
 
   return (
@@ -47,7 +44,7 @@ export default function Site() {
       <div className={styles.back}>
         <p className={styles.login}>Login</p>
         <div className={styles.input_login}>
-          <div>
+          <div>mじ
             <label className={styles.user_label}>user</label>
             <input
               className={styles.name}
@@ -68,12 +65,12 @@ export default function Site() {
           </div>
 
           <div>
-          <button className={styles.login_button} onClick={() => router.push("/")}>
-            login
-          </button>
-          <button className={styles.login_button} onClick={() => router.push("/Submit")}>
-            Create New Account!
-          </button>
+            <button className={styles.login_button} onClick={() => router.push("/")}>
+              login
+            </button>
+            <button className={styles.login_button} onClick={() => router.push("/Submit")}>
+              Create New Account!
+            </button>
           </div>
         </div>
         <Image className={styles.img} src={todo} alt="todo" width={300} height={300} />
