@@ -9,7 +9,7 @@ import { SkillBar } from 'react-skillbars';
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const API_URI = "http://localhost:8003";
+export const API_URI = process.env.NODE_ENV === "development" ? "http://localhost:8003" : "https://greenback.doudemoether.net";
 
 const DynamicTodoList = dynamic(async () => Todolist, {
   loading: () => <p>Loading...</p>,

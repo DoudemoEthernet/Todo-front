@@ -152,3 +152,4 @@ export const TodoDetails: React.FC<{
     </div>
   );
 };
+export default TodoDetails;
