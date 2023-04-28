@@ -10,7 +10,7 @@ export interface Data {
   difficulty: number;
 }
 
-export const tryGetTask = async (useFetch: UseFetch<any>): Promise<Data[]> =>
+export const tryGetTask = async (useFetch: UseFetch<any>): Promise<string> =>
   await useFetch.get("/task");
 
 export const Todolist: React.FC<{
@@ -24,10 +24,12 @@ export const Todolist: React.FC<{
 
   useEffect(() => {
     tryGetTask(fetch)
-      .then((data) => setTodoList(data))
+      .then((data) => {
+        setTodoList(JSON.parse(data))})
       .catch((e) => {
         console.error(e);
       });
+
     setRequireUpdate(false);
   }, [requireUpdate]);
   // const test: Data[] = Data
