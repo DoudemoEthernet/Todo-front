@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const API_URI = process.env.NODE_ENV === "development" && false ? "http://localhost:8003" : "https://greenback.doudemoether.net";
 
-const Experience_point: number = 50;
+const Experience_point: number = 100;
 const skills = [
   {
     type: 'level',
