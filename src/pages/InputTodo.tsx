@@ -1,8 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import styles from "@/styles/input_todo.module.css";
-import useFetch from "use-http";
-import { API_URI } from "./index";
+import { API_URI } from ".";
 
 type Data = {
   title: string;
@@ -19,8 +18,6 @@ export const InputTodo: React.FC<{
   const [description, setDescription] = useState("");
   const [difficulty, setDifficulty] = useState("0");
 
-  const { post } = useFetch(API_URI, {headers: {"Access-Control-Allow-Origin": "https://jtdi.doudemoether.net"}});
-
   async function addTodo() {
     const todo: Data = {
       title: title,
@@ -28,7 +25,8 @@ export const InputTodo: React.FC<{
       difficulty: parseInt(difficulty),
     };
     console.log(todo);
-    await post("/task", todo);
+    await fetch(`${API_URI}/task`, {method: 'POST', body: JSON.stringify(todo)});
+    
     setShow(false);
   }
 

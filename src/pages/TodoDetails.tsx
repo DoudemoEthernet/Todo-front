@@ -22,8 +22,6 @@ export const TodoDetails: React.FC<{
     }
   }, [currentData]);
 
-  const fetch = useFetch(API_URI);
-
   async function updateTodo() {
     if (currentData === null) {
       console.error("currentData is null!!");
@@ -35,7 +33,7 @@ export const TodoDetails: React.FC<{
       description: description,
       difficulty: parseInt(difficulty),
     };
-    await fetch.patch("/task", data);
+    await fetch(`${API_URI}/task`, {method: 'patch', body: JSON.stringify(data), headers: {'Content-Type': 'application/json',},});
     setIsEditing(false);
   }
 
@@ -44,7 +42,7 @@ export const TodoDetails: React.FC<{
       console.error("currentData is null!!");
       return;
     }
-    await fetch.delete(`/task/${currentData.id}`);
+    await fetch(`${API_URI}/task/${currentData.id}`, {method: 'delete'});
     setIsEditing(false);
   }
 
@@ -123,7 +121,7 @@ export const TodoDetails: React.FC<{
             <button
               className={styles.delete}
               onClick={() =>
-                updateTodo().catch((e) => {
+                deleteTodo().catch((e) => {
                   console.error(e);
                 })
               }
