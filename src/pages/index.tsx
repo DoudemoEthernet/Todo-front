@@ -26,7 +26,7 @@ const DynamicInputTodo = dynamic(async () => InputTodo, {
   ssr: false,
 });
 
-const Experience_point: number = 50;
+const Experience_point: number = 100;
 const skills = [
   {
     type: 'level',
@@ -46,7 +46,7 @@ export default function Home() {
   const [requireUpdate, setRequireUpdate] = useState(false);
   return (
     <>
-      <p className={styles.test}>To do List</p>
+      <p className={styles.test}>Just To Do It !!!!!</p>
       <div className={styles.menu}>
         <div className={styles.menu_edge}>
           <button className={styles.toSubmit} onClick={() => setShow(true)}>
@@ -76,7 +76,7 @@ export default function Home() {
             <></>
           )}
         </div>
-        <SkillBar skills={skills} height={15}/>
+        <SkillBar skills={skills}/>
       </div>
       {/* <div>{loading ? "loading" : "ERROR!"}</div>  */}
     </>

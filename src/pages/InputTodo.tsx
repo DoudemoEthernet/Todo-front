@@ -3,7 +3,11 @@ import { useState } from "react";
 import styles from "@/styles/input_todo.module.css";
 import useFetch from "use-http";
 import { API_URI } from "./index";
+
 import { getAuthHeader, getToken } from "@/lib/account";
+
+import axios from "axios";
+
 
 type Data = {
   title: string;
@@ -20,11 +24,15 @@ export const InputTodo: React.FC<{
   const [description, setDescription] = useState("");
   const [difficulty, setDifficulty] = useState("0");
 
+
   const token = getToken();
   if (token === undefined) {
     //TODO ログイン画面に戻す
   }
-  const { post } = useFetch(API_URI, { headers: { ...getAuthHeader(token ?? "") } });
+
+  const { post } = useFetch(API_URI, {headers: {"Access-Control-Allow-Origin": "*"}});
+  
+
 
   async function addTodo() {
     const todo: Data = {
@@ -33,7 +41,17 @@ export const InputTodo: React.FC<{
       difficulty: parseInt(difficulty),
     };
     console.log(todo);
-    await post("/task", todo);
+    axios({
+      method: 'get',
+      url: `${API_URI}/task`,
+      headers: {"Access-Control-Allow-Origin": "*"}
+    }).then((response) => {
+      const data = response.data
+      console.log("data", data);
+    }).catch((e) => {
+      console.error(e);
+    })
+    // await post("/task", todo);
     setShow(false);
   }
 
