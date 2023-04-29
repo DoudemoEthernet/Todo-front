@@ -19,7 +19,7 @@ export const InputTodo: React.FC<{
   const [description, setDescription] = useState("");
   const [difficulty, setDifficulty] = useState("0");
 
-  const { post } = useFetch(API_URI, {headers: {"Access-Control-Allow-Origin": "jtdi.doudemoether.net"}});
+  const { post } = useFetch(API_URI, {headers: {"Access-Control-Allow-Origin": "https://jtdi.doudemoether.net"}});
 
   async function addTodo() {
     const todo: Data = {
